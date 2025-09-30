@@ -33,7 +33,7 @@ Salewidget отображает на сайте акции.
         ]
     }
 </script>
-<script defer src="https://unibix.github.io/salewidget/salewidget.js"></script>
+<script defer src="[https://unibix.github.io/SaleWidget/salewidget.js"></script>
 ~~~
 
 #### Здесь:
