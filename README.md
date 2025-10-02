@@ -22,13 +22,13 @@ const sale_config =  {
             {
              //   color: 'black',
              //   background : 'white',
-                delay: 5000 // задержка перед появлением в мс
+                delay: 7000 // задержка перед появлением в мс
             },
         ]
     }
   
 </script>
-<script defer src="[https://unibix.github.io/SaleWidget/salewidget.js"></script>
+<script defer src="https://unibix.github.io/SaleWidget/salewidget.js"></script>
 ~~~
 
 #### Здесь:
