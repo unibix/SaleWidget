@@ -43,22 +43,37 @@ salewidgetstyle.innerHTML = `
 // проходимся по акциям и выводим их, создавая для каждого свой div
 if(getCookie('salewidget') == undefined) {
   
-for (let item of sale_config.elements) { 
-    let salewidget = document.createElement('div');
-    document.body.appendChild(salewidget);
-    salewidget.classList.add('salewidget');
-    salewidget.innerHTML = `
-  <div class="salewidget-icon">
-      <img class="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+PHN2ZyBoZWlnaHQ9IjI0IiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtMTAyOC40KSI+PHBhdGggZD0ibTI0IDE0YTIgMiAwIDEgMSAtNCAwIDIgMiAwIDEgMSA0IDB6IiBmaWxsPSIjN2Y4YzhkIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxLjI1IC0xMCAxMDMxLjQpIi8+PHBhdGggZD0ibTEyIDEwMzAuNGMtMy44NjYgMC03IDMuMi03IDcuMiAwIDMuMSAzLjEyNSA1LjkgNCA3LjggMC44NzUgMS44IDAgNSAwIDVsMy0wLjUgMyAwLjVzLTAuODc1LTMuMiAwLTVjMC44NzUtMS45IDQtNC43IDQtNy44IDAtNC0zLjEzNC03LjItNy03LjJ6IiBmaWxsPSIjZjM5YzEyIi8+PHBhdGggZD0ibTEyIDEwMzAuNGMzLjg2NiAwIDcgMy4yIDcgNy4yIDAgMy4xLTMuMTI1IDUuOS00IDcuOC0wLjg3NSAxLjggMCA1IDAgNWwtMy0wLjV2LTE5LjV6IiBmaWxsPSIjZjFjNDBmIi8+PHBhdGggZD0ibTkgMTAzNi40LTEgMSA0IDEyIDQtMTItMS0xLTEgMS0xLTEtMSAxLTEtMS0xIDEtMS0xem0wIDEgMSAxIDAuNS0wLjUgMC41LTAuNSAwLjUgMC41IDAuNSAwLjUgMC41LTAuNSAwLjUtMC41IDAuNSAwLjUgMC41IDAuNSAxLTEgMC40MzggMC40LTMuNDM4IDEwLjMtMy40Mzc1LTEwLjMgMC40Mzc1LTAuNHoiIGZpbGw9IiNlNjdlMjIiLz48cmVjdCBmaWxsPSIjYmRjM2M3IiBoZWlnaHQ9IjUiIHdpZHRoPSI2IiB4PSI5IiB5PSIxMDQ1LjQiLz48cGF0aCBkPSJtOSAxMDQ1LjR2NWgzdi0xaDN2LTFoLTN2LTFoM3YtMWgtM3YtMWgtM3oiIGZpbGw9IiM5NWE1YTYiLz48cGF0aCBkPSJtOSAxMDQ2LjR2MWgzdi0xaC0zem0wIDJ2MWgzdi0xaC0zeiIgZmlsbD0iIzdmOGM4ZCIvPjwvZz48L3N2Zz4=" alt="Red dot" /> 
-      </div>
-        <div class="salewidget-text">
-       
-       `+item.name+`
-        
-      </div>  
-      <span class="salewidget-close">Х</span>
-  `;
-  
+for (let item of sale_config.elements) {
+
+    
+    const now = new Date();
+    if (typeof item.date_start == "undefined"  ) {
+        item.date_start=0;
+    }
+    if (typeof item.date_finish == "undefined"  ) {
+        item.date_finish=0;
+    }
+
+    // выводим если входит в диапазон дат
+    if(now >= new Date(item.date_start) && now <= new Date(item.date_finish) )  {
+      let salewidget = document.createElement('div');
+      document.body.appendChild(salewidget);
+      salewidget.classList.add('salewidget');
+      salewidget.innerHTML = `
+    <div class="salewidget-icon">
+        <img class="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+PHN2ZyBoZWlnaHQ9IjI0IiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtMTAyOC40KSI+PHBhdGggZD0ibTI0IDE0YTIgMiAwIDEgMSAtNCAwIDIgMiAwIDEgMSA0IDB6IiBmaWxsPSIjN2Y4YzhkIiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAxLjI1IC0xMCAxMDMxLjQpIi8+PHBhdGggZD0ibTEyIDEwMzAuNGMtMy44NjYgMC03IDMuMi03IDcuMiAwIDMuMSAzLjEyNSA1LjkgNCA3LjggMC44NzUgMS44IDAgNSAwIDVsMy0wLjUgMyAwLjVzLTAuODc1LTMuMiAwLTVjMC44NzUtMS45IDQtNC43IDQtNy44IDAtNC0zLjEzNC03LjItNy03LjJ6IiBmaWxsPSIjZjM5YzEyIi8+PHBhdGggZD0ibTEyIDEwMzAuNGMzLjg2NiAwIDcgMy4yIDcgNy4yIDAgMy4xLTMuMTI1IDUuOS00IDcuOC0wLjg3NSAxLjggMCA1IDAgNWwtMy0wLjV2LTE5LjV6IiBmaWxsPSIjZjFjNDBmIi8+PHBhdGggZD0ibTkgMTAzNi40LTEgMSA0IDEyIDQtMTItMS0xLTEgMS0xLTEtMSAxLTEtMS0xIDEtMS0xem0wIDEgMSAxIDAuNS0wLjUgMC41LTAuNSAwLjUgMC41IDAuNSAwLjUgMC41LTAuNSAwLjUtMC41IDAuNSAwLjUgMC41IDAuNSAxLTEgMC40MzggMC40LTMuNDM4IDEwLjMtMy40Mzc1LTEwLjMgMC40Mzc1LTAuNHoiIGZpbGw9IiNlNjdlMjIiLz48cmVjdCBmaWxsPSIjYmRjM2M3IiBoZWlnaHQ9IjUiIHdpZHRoPSI2IiB4PSI5IiB5PSIxMDQ1LjQiLz48cGF0aCBkPSJtOSAxMDQ1LjR2NWgzdi0xaDN2LTFoLTN2LTFoM3YtMWgtM3YtMWgtM3oiIGZpbGw9IiM5NWE1YTYiLz48cGF0aCBkPSJtOSAxMDQ2LjR2MWgzdi0xaC0zem0wIDJ2MWgzdi0xaC0zeiIgZmlsbD0iIzdmOGM4ZCIvPjwvZz48L3N2Zz4=" alt="Red dot" /> 
+        </div>
+          <div class="salewidget-text">
+         
+         `+item.name+`
+          
+        </div>  
+        <span class="salewidget-close">Х</span>
+    `;
+    }
+    else {
+      console.log('Акция завершена или еще не началась');
+    }
   
   
 }
@@ -94,3 +109,4 @@ function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
+
